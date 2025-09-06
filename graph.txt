@@ -1,0 +1,46 @@
+FONCTION quad (a,b,c,x)
+    RETOUR a*x**2 +b*x + c
+
+
+AFFICHEZ "Entrez a"
+LIRE a
+AFFICHEZ "Entrez b"
+LIRE b
+AFFICHEZ "Entrez c"
+LIRE c
+
+AFFICHER "Entrez xmin"
+LIRE xmin
+
+AFFICHER "Entrez xmax"
+LIRE xmax
+
+AFFICHER "Entrez nPoints"
+LIRE nPoints
+
+AFFICHER "Entrez ymin"
+LIRE ymin
+
+AFFICHER "Entrez ymax"
+LIRE ymax
+
+AFFICHER  "Entrez tailleY"
+LIRE tailleY
+
+i = 0
+TANT QUE i < nPoint
+
+    x = xmin + (xmax - xmin )/(nPoint-1) * i
+
+    y = quad(a,b,c,x)
+
+    SI y < ymin OU y > ymax
+        AFFICHER finDeLigne
+    SI y == ymin 
+        AFFICHER "*", finDeLigne
+    Si y == ymax
+        AFFICHER " "*tailleY, "*", finDeLigne
+    SINON
+        AFFICHER ""*((y-ymin)/(ymax-ymin))*tailleY, "*", finDeLigne
+
+    i += 1

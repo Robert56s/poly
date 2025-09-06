@@ -1,0 +1,17 @@
+
+boucle = vrai
+total = 0
+n = 0
+
+TANT QUE boucle == vrai
+
+    AFFICHER "Entrez une valeur positive ou -1 pour quitter"
+    LIRE x
+    total += x
+    n += 1
+
+
+    SI x = -1
+        boucle == faux
+        AFFICHER f"La moyenne des {n} est {total/n}"
+        

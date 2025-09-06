@@ -1,0 +1,19 @@
+FONCTION findTxtINF (phrase)
+    longueur = lenght(phrase)
+
+    i = 0
+    trouver = faux
+
+    TANT QUE i < longueur
+        SI phrase[i] == "I"
+            SI phrase[i+1] == "N"
+                SI phrase[i+2] == "F"
+                AFFICHER i
+                trouver = vrai
+        i+=1
+    SI trouver == false
+        AFFICHER -1
+
+
+
+findTxtINF("nlsfdnsfdjsfdvbjIbsbmsfdsINF")
