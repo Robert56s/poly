@@ -1,0 +1,30 @@
+5 – Moyenne : Écrire un algorithme qui calcule la moyenne entre des valeurs positives entrées par l’usager.
+Le nombre de valeurs n’est pas connu à l’avance, l’usager entrera la valeur -1 pour indiquer qu’il a terminé.
+Exemple : L’utilisateur entre les valeurs 1 ; 7 ; 11 ; -1.
+L’affichage attendu est : La moyenne des 3 valeurs est 6,33.
+
+(a)
+Compter le nombre d’addition -> compter le total.
+
+
+(b)
+total = 0
+n = 0
+
+TANT QUE vrai
+
+    AFFICHER "Entrez une valeur positive ou -1 pour quitter"
+    LIRE x
+
+    SI x == -1
+        SI n = 0
+            AFFICHER "Aucune valeur entrée, moyenne impossible"
+        SINON
+            AFFICHER f"La moyenne des {n} valeurs est {total/n}"
+        RETOUR
+    
+    total += x
+    n++             //(n++  -->  n += 1  -->  n = n + 1)
+
+
+        

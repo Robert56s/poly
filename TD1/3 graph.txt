@@ -1,0 +1,71 @@
+3 – Graphique : Reprendre l’algorithme écrit en 2 et afficher sous forme textuelle les points pour faire un
+« graphique » en utilisant des espaces et des étoiles. L’algorithme aura aussi besoin des valeurs ymin, ymax et
+tailleY. Le nombre d’espaces à afficher doit augmenter linéairement pour une valeur de y entre ymin et ymax,
+soit aucun espace lorsque y = ymin, et tailleY espaces lorsque y = ymax.
+Un point dont le y n’est pas dans l’intervalle [ymin, ymax] sera affiché comme une ligne vide. Utiliser
+l’opération « Afficher finDeLigne » pour indiquer où sont les fins de lignes.
+Exemple : L’utilisateur entre les mêmes valeurs qu’à l’exercice 2, puis les valeurs de ymin, ymax et tailleY
+comme étant -5 ; -4 ; 20
+L'affichage attendu est : (les « ˽ » représentent des espaces et les « ↵ » les fins de lignes)
+*↵
+˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+
+
+
+(a)
+
+
+
+
+
+(b)
+FONCTION quad (a,b,c,x)
+    RETOUR a*x**2 +b*x + c
+
+
+AFFICHEZ "Entrez a"
+LIRE a
+AFFICHEZ "Entrez b"
+LIRE b
+AFFICHEZ "Entrez c"
+LIRE c
+
+AFFICHER "Entrez xmin"
+LIRE xmin
+
+AFFICHER "Entrez xmax"
+LIRE xmax
+
+AFFICHER "Entrez nPoints"
+LIRE nPoints
+
+AFFICHER "Entrez ymin"
+LIRE ymin
+
+AFFICHER "Entrez ymax"
+LIRE ymax
+
+AFFICHER  "Entrez tailleY"
+LIRE tailleY
+
+i = 0
+TANT QUE i < nPoints
+
+    x = xmin + (xmax - xmin )/(nPoints-1) * i
+
+    y = quad(a,b,c,x)
+
+    SI y < ymin OU y > ymax
+        AFFICHER finDeLigne
+    SI y == ymin 
+        AFFICHER "*", finDeLigne
+    Si y == ymax
+        AFFICHER (" "*tailleY), "*", finDeLigne
+    SINON
+        AFFICHER (""*ENTIER((y-ymin)/(ymax-ymin))*tailleY), "*", finDeLigne
+
+    i += 1

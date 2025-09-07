@@ -1,0 +1,57 @@
+2 – Quadratique : Écrire un algorithme qui calcule les valeurs y pour nPoints points également espacés en x
+entre xmin et xmax sur une fonction quadratique y = a x 2 + b x + c. 
+Utilisez une fonction pour calculer y à partir de a, b, c, et x.
+Exemple : L’utilisateur entre les valeurs de a, b et c comme étant -1 ; 2 ; -5, et les valeurs de xmin, xmax et
+nPoints comme étant 0 ; 1 ; 6
+L'affichage attendu est :
+Les valeurs (x ; y) des 6 points sont :
+0 ; -5
+0,2 ; -4,64
+0,4 ; -4,36
+0,6 ; -4,16
+0,8 ; -4,04
+1 ; -4
+
+
+(a)
+Creer une fonction qui prend a, b, c, x et qui retourne le resultat de la fonction quadratique de ses composantes.
+Demander à l’usager d’entrer les valeurs de a, b, c, xmin, xmax, et nPoints. Lire les valeurs.
+Iterer sur le nombre de points. 
+Pour chaque iteration :
+Calculer le point x en prenant la valeur de xmin et additionner ................
+Ensuite trouver le y avec la fonction quad.
+Afficher x et y.
+
+
+(b)
+FONCTION quad(a,b,c,x)
+    RETOUR a*x**2 +b*x + c
+
+AFFICHEZ "Entrez a"
+LIRE a
+AFFICHEZ "Entrez b"
+LIRE b
+AFFICHEZ "Entrez c"
+LIRE c
+
+AFFICHER "Entrez xmin"
+LIRE xmin
+
+AFFICHER "Entrez xmax"
+LIRE xmax
+
+AFFICHER "Entrez nPoints"
+LIRE nPoints
+
+AFFICHER "Les valeurs (x ; y) des 6 points sont :"
+
+i = 0
+TANT QUE i < nPoints
+
+    x = xmin + (xmax - xmin )/(nPoints-1) * i
+
+    y = quad(a,b,c,x)
+
+    AFFICHER x, " ; ", y, "\n"
+
+    i += 1

@@ -1,0 +1,28 @@
+4 – Recherche : Écrire une fonction dont le résultat est la position où se trouve le texte « INF » dans une
+phrase qui lui est passée ; elle doit avoir le résultat -1 dans le cas où il n’y est pas. La position résultante doit
+être celle où se trouve la première lettre du « INF » dans la phrase, la position zéro étant la première lettre de
+la phrase.
+Note : chaque caractère compte comme une position, incluant les espaces et les ponctuations. La fonction
+« longueur de (phrase) » permet de connaître le nombre de caractères dans la phrase (voir exemple en p.1).
+Exemple : La phrase passée à la fonction est « J’ai un cours d’INF1005C », le résultat attendu est 16.
+
+
+(a)
+Trouver la longueur de la phrase. Parcourir la phrase caractère par caractère jusqu’à trouver la lettre I. 
+Regarder les lettres suivantes voir si elles correspondent à N et F. Si oui, afficher la position du caractère.
+
+
+(b)
+FONCTION findTxtINF (phrase)
+    longueur = lenght(phrase)
+
+    i = 0
+
+    TANT QUE i < (longueur - 2)
+        SI phrase[i] == "I"
+            SI phrase[i+1] == "N"
+                SI phrase[i+2] == "F"
+                RETOUR i
+        i+=1
+
+    RETOUR -1

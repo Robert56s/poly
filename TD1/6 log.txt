@@ -1,0 +1,79 @@
+Écrire une fonction pour calculer le logarithme naturel d’un nombre réel x situé dans
+l’intervalle ]0, 2[. Vous devez vérifier que le nombre respecte bien l’intervalle. S’il ne le respecte pas, affichez
+« Le nombre n’est pas valide » et terminer le programme. La méthode pour calculer le logarithme sera
+d’utiliser la série définie comme :
+
+ln(x) = (x-1) - ((x-1)**2)/2 + ((x-1)**3)/3 - ((x-1)**4)/4 + ((x-1)**5)/5 - ...
+
+Lorsque le nombre de termes tend vers l’infini, cette série converge vers le logarithme naturel de x, si x est
+dans l’intervalle ]0, 2[ (notez que numériquement ça ne converge pas très bien pour x très près de 0 ou de 2).
+L’estimation de l’erreur pour la série ayant n termes est la valeur absolue du nième terme (sans le signe, les
+termes sont décroissants sur l’intervalle de convergence). L’algorithme doit arrêter lorsque cette estimation
+de l’erreur est inférieure à la précision voulue. La lecture des données et l’affichage doit être fait à l’extérieur
+de la fonction. La fonction doit donc uniquement retourner le logarithme naturel en fonction de x et de la
+précision voulue.
+Note : ni la valeur absolue, ni l’exponentiation, ne sont des opérations élémentaires disponibles pour
+l’algorithme raffiné.
+Exemple : L’utilisateur entre les valeurs de x et précision comme étant 1,5 et 0,05.
+L’affichage attendu est : Le logarithme naturel de 1.5 est approximativement 0.416667.
+Dans cet exemple, les valeurs des termes sont : 0.5, -0.125, 0.041666666 ; puisque ce dernier terme (en valeur
+absolue) est inférieur à la précision voulue, c’est la somme de ces termes qui est l’approximation acceptée.
+
+(a)
+Demander a l'utilisateur une valeur de x et une precision. Lire x et precision. 
+Si x est pas dans l'intervalle ]0,2[, afficher que le nombre n'est pas valide.
+Rentrer ses valeur dans la fonction log qui marche de cette facon ...............
+
+
+
+Afficher ce que le logarithme naturel de x est approximativement.
+
+
+(b)
+FONCTION exp(x, n)
+    resultat = 1
+    i = 0
+    TANT QUE i < n
+        resultat *= x
+        i++
+    RETOUR resultat
+
+
+FONCTION abs(x)
+    SI x >= 0
+        RETOUR x
+    SINON
+        RETOUR x*-1
+    
+
+FONCTION log(x, precision)
+
+    resultat = 0
+
+    boucle = vrai
+    i = 1
+    TANT QUE boucle == vrai
+
+        n = exp((x - 1), i)/i 
+
+        // (% modulo donne le restant de la division dans ce cas 1,0,1,0 --> *2 - 1 ca donne 1, -1, 1, -1)
+        resultat += ((i%2)*2 - 1) * n
+
+        SI abs(n) < precision
+            RETOUR resultat
+
+        i++
+
+
+AFFICHER "Entrez x"
+LIRE x
+
+SI (x <= 0 ou x >= 2) 
+    AFFICHER "Le nombre n’est pas valide"
+    RETOUR
+
+AFFICHER "Entrez precision"
+LIRE precision
+
+AFFICHER f"Le logarithme naturel de {x} est {log(x, precision)}"
+
