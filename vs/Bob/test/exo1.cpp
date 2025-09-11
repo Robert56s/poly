@@ -3,18 +3,26 @@ using namespace std;
 
 int main()
 {
-	int n = 10;
-	int sum = 0;
+	double x1, y1, x2, y2;
 
-	int i = 0;
+	cout << "Ce code va vous dire si deux vecteur 2d sont orthogonaux ou pas" <<endl;
+	cout << "La composante x du premier vecteur : ";
+	cin >> x1;
+	cout << "La composante y du premier vecteur : ";
+	cin >> y1;
+	cout << "La composante x du deuxieme vecteur : ";
+	cin >> x2;
+	cout << "La composante y du deuxieme vecteur : ";
+	cin >> y2;
 
-
-	cout << "Enter a number: ";
-	cin >> n;
-
-	while (i<n) {
-		sum = +i;
-		i++;
+	if (x1 * x2 + y1 * y2 == 0)
+	{
+		cout << "Les vecteurs sont orthogonaux." << endl;
 	}
-	cout << "Sum is: " << sum << endl;
+	else
+	{
+		cout << "Les vecteurs ne sont pas orthogonaux" << endl;
+	}
+
+	return 0;
 }
