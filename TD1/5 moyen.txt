@@ -4,7 +4,12 @@ Exemple : L’utilisateur entre les valeurs 1 ; 7 ; 11 ; -1.
 L’affichage attendu est : La moyenne des 3 valeurs est 6,33.
 
 (a)
-Compter le nombre d’addition -> compter le total.
+Le paramètre « boucle » est initié à vrai. Les paramètres « total » et « n » sont initiés à 0.
+
+Tant que la boucle est vraie, demander à l’usager d’entrer une valeur positive. Lire cette valeur et l’ajouter au total. Incrémenter de 1 le paramètre n, qui correspond au nombre de valeurs entrées.
+
+Si la valeur est -1, la boucle devient fausse et le programme cesse de demander à l’utilisateur d’entrer des valeurs. Afficher la moyenne en calculant le total divisé par le nombre de valeurs.
+
 
 
 (b)

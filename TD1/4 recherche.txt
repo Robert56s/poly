@@ -8,8 +8,12 @@ Exemple : La phrase passée à la fonction est « J’ai un cours d’INF1005C �
 
 
 (a)
-Trouver la longueur de la phrase. Parcourir la phrase caractère par caractère jusqu’à trouver la lettre I. 
-Regarder les lettres suivantes voir si elles correspondent à N et F. Si oui, afficher la position du caractère.
+Trouver la longueur de la phrase. Le paramètre « trouver » est initié à faux.
+
+ Pour chaque lettre, si cette dernière est un « I », regarder la lettre suivante. Si c’est un « N », regarder la lettre suivante. Si c'est un « F », afficher la position de la lettre I. Le paramètre « trouver » devient vrai et la boucle se termine. 
+
+Sinon, après que toute les lettres soit parcouru et que le paramètre « trouver » est encore faux, afficher -1.
+
 
 
 (b)

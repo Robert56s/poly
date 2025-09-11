@@ -20,13 +20,18 @@ Dans cet exemple, les valeurs des termes sont : 0.5, -0.125, 0.041666666 ; puisq
 absolue) est inférieur à la précision voulue, c’est la somme de ces termes qui est l’approximation acceptée.
 
 (a)
-Demander a l'utilisateur une valeur de x et une precision. Lire x et precision. 
-Si x est pas dans l'intervalle ]0,2[, afficher que le nombre n'est pas valide.
-Rentrer ses valeur dans la fonction log qui marche de cette facon ...............
+Créer une fonction exponentielle qui a comme paramètre x et n (le nombre d’exposant). 
 
+Créer une fonction de valeur absolue afin de trouver la valeur absolue d’un nombre x. Si ce dernier est inférieur à 0, il est multiplié par -1.
 
+Créer une fonction logarithmique qui a comme paramètre un nombre x et une précision. Le paramètre résultat est initié à 0, le paramètre i est initié à 1 et la boucle est vraie. Tant que celle-ci est vraie, faire appel à la fonction exponentielle pour calculer les termes. Pour déterminer le signe du terme, le modulo en fonction de i est trouvé, ce qui donne 1 ou -1, qui est ensuite multiplié par le terme. Le tout est additionné à la variable résultat.
 
-Afficher ce que le logarithme naturel de x est approximativement.
+À chaque itération, faire appel à la fonction valeur absolue pour vérifier si le terme est inférieur à la précision. Si oui, la boucle se termine. Sinon i est incrémenté. 
+
+Demander à l’utilisateur d’entrer la valeur de x. Si la valeur est inférieure ou égal à 0 ou supérieur ou égal à 2, afficher que le nombre n’est pas valide et redemander. Sinon, si la valeur est valide, demander à l’utilisateur d’entrer la précision. 
+
+Afficher le résultat en faisant appel à la fonction logarithmique
+
 
 
 (b)
