@@ -1,0 +1,84 @@
+3 – Graphique : Reprendre l’algorithme écrit en 2 et afficher sous forme textuelle les points pour faire un
+« graphique » en utilisant des espaces et des étoiles. L’algorithme aura aussi besoin des valeurs ymin, ymax et
+tailleY. Le nombre d’espaces à afficher doit augmenter linéairement pour une valeur de y entre ymin et ymax,
+soit aucun espace lorsque y = ymin, et tailleY espaces lorsque y = ymax.
+Un point dont le y n’est pas dans l’intervalle [ymin, ymax] sera affiché comme une ligne vide. Utiliser
+l’opération « Afficher finDeLigne » pour indiquer où sont les fins de lignes.
+Exemple : L’utilisateur entre les mêmes valeurs qu’à l’exercice 2, puis les valeurs de ymin, ymax et tailleY
+comme étant -5 ; -4 ; 20
+L'affichage attendu est : (les « ˽ » représentent des espaces et les « ↵ » les fins de lignes)
+*↵
+˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽˽*↵
+
+
+
+(a)
+Demander à l’usager d’entrer les valeurs de a, b, c, xmin, xmax, ymin, ymax, tailleY et nPoints. Lire les valeurs. 
+
+Créer une fonction quadratique selon les paramètres a, b, c et x afin de trouver la coordonnée y.
+
+Pour chacun des nPoints, trouver la coordonnée x en additionnant xmin au ratio de la distance entre xmax et xmin sur la valeur nPoints auquel est soustrait 1. Faire appel à la fonction quadratique afin de trouver la valeur de y.
+
+Si la valeur de y est ne se trouve pas dans la plage de valeurs comprise entre ymin, ymax, ne rien afficher.
+
+Si la valeur de y est la valeur de ymin, afficher une étoile.
+
+Si la valeur de y est la valeur de ymax, afficher l’étoile avec nombre d’espace correspondant à tailleY.
+
+Sinon, afficher l’étoile avec le nombre d’espace correspondant au ratio de la distance entre y et ymin sur la distance entre ymax et ymin, le tout multiplié par tailleY. 
+
+L’itération est incrémentée après chaque point pour trouver le suivant et s’arrête lorsque le dernier point est trouvé.
+
+
+
+(b)
+FONCTION quad (a,b,c,x)
+    RETOUR a*x**2 +b*x + c
+
+
+AFFICHEZ "Entrez a"
+LIRE a
+AFFICHEZ "Entrez b"
+LIRE b
+AFFICHEZ "Entrez c"
+LIRE c
+
+AFFICHER "Entrez xmin"
+LIRE xmin
+
+AFFICHER "Entrez xmax"
+LIRE xmax
+
+AFFICHER "Entrez nPoints"
+LIRE nPoints
+
+AFFICHER "Entrez ymin"
+LIRE ymin
+
+AFFICHER "Entrez ymax"
+LIRE ymax
+
+AFFICHER  "Entrez tailleY"
+LIRE tailleY
+
+i = 0
+TANT QUE i < nPoints
+
+    x = xmin + (xmax - xmin )/(nPoints-1) * i
+
+    y = quad(a,b,c,x)
+
+    SI y < ymin OU y > ymax
+        AFFICHER finDeLigne
+    SI y == ymin 
+        AFFICHER "*", finDeLigne
+    Si y == ymax
+        AFFICHER (" "*tailleY), "*", finDeLigne
+    SINON
+        AFFICHER (""*ENTIER((y-ymin)/(ymax-ymin))*tailleY), "*", finDeLigne
+
+    i += 1

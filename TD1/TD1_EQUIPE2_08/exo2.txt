@@ -1,0 +1,60 @@
+2 – Quadratique : Écrire un algorithme qui calcule les valeurs y pour nPoints points également espacés en x
+entre xmin et xmax sur une fonction quadratique y = a x 2 + b x + c. 
+Utilisez une fonction pour calculer y à partir de a, b, c, et x.
+Exemple : L’utilisateur entre les valeurs de a, b et c comme étant -1 ; 2 ; -5, et les valeurs de xmin, xmax et
+nPoints comme étant 0 ; 1 ; 6
+L'affichage attendu est :
+Les valeurs (x ; y) des 6 points sont :
+0 ; -5
+0,2 ; -4,64
+0,4 ; -4,36
+0,6 ; -4,16
+0,8 ; -4,04
+1 ; -4
+
+
+(a)
+Demander à l’usager d’entrer les valeurs de a, b, c, xmin, xmax, et nPoints. Lire les valeurs. 
+
+Créer une fonction quadratique selon les paramètres a, b, c et x afin de trouver la coordonnée y.
+
+Pour chacun des nPoints, trouver la coordonnée x en additionnant xmin au ratio de la distance entre xmax et xmin sur la valeur nPoints auquel est soustrait 1. Le ratio permet de connaître la distance entre chacun des nPoints. Le 1 est soustrait puisque l’itération commence à 0. 
+
+Pour chacun des nPoints, après avoir trouvé la coordonée en x, faire appel à la fonction quadratique pour trouver la valeur de y.
+
+L’itération est incrémentée après chaque point pour trouver le suivant et s’arrête lorsque le dernier point est trouvé.
+
+
+
+(b)
+FONCTION quad(a,b,c,x)
+    RETOUR a*x**2 +b*x + c
+
+AFFICHEZ "Entrez a"
+LIRE a
+AFFICHEZ "Entrez b"
+LIRE b
+AFFICHEZ "Entrez c"
+LIRE c
+
+AFFICHER "Entrez xmin"
+LIRE xmin
+
+AFFICHER "Entrez xmax"
+LIRE xmax
+
+AFFICHER "Entrez nPoints"
+LIRE nPoints
+
+AFFICHER "Les valeurs (x ; y) des 6 points sont :"
+
+i = 0
+TANT QUE i < nPoints
+
+    x = xmin + (xmax - xmin )/(nPoints-1) * i
+
+    y = quad(a,b,c,x)
+
+    AFFICHER x, " ; ", y, "\n"
+
+    i += 1
