@@ -1,0 +1,4 @@
+Joe Untel
+SOUS-TOTAL      434.95 $
+TAXES            65.24 $
+TOTAL           500.19 $
