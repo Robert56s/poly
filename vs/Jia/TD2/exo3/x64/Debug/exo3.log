@@ -1,0 +1,6 @@
+﻿  exo3.cpp
+C:\Users\jiafournier\OneDrive\Desktop\C_C++\INF1005C\TD2\exo3\exo3.cpp(54,3): error C2561: 'main' : la fonction doit retourner une valeur
+      C:\Users\jiafournier\OneDrive\Desktop\C_C++\INF1005C\TD2\exo3\exo3.cpp(47,5):
+      voir la déclaration de 'main'
+  
+C:\Users\jiafournier\OneDrive\Desktop\C_C++\INF1005C\TD2\exo3\exo3.cpp(64,9): warning C4244: 'return' : conversion de 'double' en 'int', perte possible de données
