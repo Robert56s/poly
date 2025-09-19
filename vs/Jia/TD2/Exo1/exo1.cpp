@@ -1,3 +1,9 @@
+/*Programme qui vérifie si les vecteurs sont orthogonaux ou non.
+\file exo1.cpp
+\author Fournier et Nelea
+\date 18 septembre 2025
+Créé le 11 septembre 2025*/
+
 #include <iostream>
 using namespace std;
 

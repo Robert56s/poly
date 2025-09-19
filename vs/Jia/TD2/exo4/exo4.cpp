@@ -1,3 +1,9 @@
+/*Programme qui lit un fichier de ventes faites et qui écrit dans un autre fichier le sous-total, les taxes et le montant total de la vente.
+\file exo4.cpp
+\author Fournier et Nelea
+\date 19 septembre 2025
+Créé le 11 septembre 2025*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
