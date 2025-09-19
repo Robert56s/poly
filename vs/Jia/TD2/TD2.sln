@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exo3", "exo3\exo3.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exo4", "exo4\exo4.vcxproj", "{7185E067-EE7F-4D5D-83C9-387406022F65}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exo4_test", "exo4_test\exo4_test.vcxproj", "{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -53,14 +51,6 @@ Global
 		{7185E067-EE7F-4D5D-83C9-387406022F65}.Release|x64.Build.0 = Release|x64
 		{7185E067-EE7F-4D5D-83C9-387406022F65}.Release|x86.ActiveCfg = Release|Win32
 		{7185E067-EE7F-4D5D-83C9-387406022F65}.Release|x86.Build.0 = Release|Win32
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Debug|x64.ActiveCfg = Debug|x64
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Debug|x64.Build.0 = Debug|x64
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Debug|x86.ActiveCfg = Debug|Win32
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Debug|x86.Build.0 = Debug|Win32
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Release|x64.ActiveCfg = Release|x64
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Release|x64.Build.0 = Release|x64
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Release|x86.ActiveCfg = Release|Win32
-		{8D6CBA47-5C18-4D20-9DCE-34E4EFB09AA9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

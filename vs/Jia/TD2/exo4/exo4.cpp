@@ -42,7 +42,9 @@ int main() {
 	double taxe = 0.15 * prixTotal;
 	double prixTaxe = prixTotal + taxe;
 
-	ecrireFacture << "sous-total " << prixTotal << '$' << endl << "taxes " << taxe << '$' << endl << "total " << prixTaxe << '$' << endl;
+	ecrireFacture << left << setw(12) << "SOUS-TOTAL" << right << setw(10) << fixed << setprecision(2) << prixTotal << " $" << endl;
+	ecrireFacture << left << setw(12) << "TAXES" << right << setw(10) << fixed << setprecision(2) << taxe << " $" << endl;
+	ecrireFacture << left << setw(12) << "TOTAL" << right << setw(10) << fixed << setprecision(2) << prixTaxe << " $" << endl;
 
 	//Fermer les fichiers
 	lireVentes.close();
