@@ -1,2 +1,3 @@
 ﻿  exo3.cpp
+C:\Users\rober\Desktop\poly\vs\Bob\exo3\exo3.cpp(45,1): warning C4715: 'logPerso': not all control paths return a value
   exo3.vcxproj -> C:\Users\rober\Desktop\poly\vs\Bob\x64\Debug\exo3.exe

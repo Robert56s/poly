@@ -1,16 +1,21 @@
-// Robert Nelea 2449901
-// Jia Fournier
+/**
+ * Programme qui calcule la monnaie à rendre après un achat.
+ * \file   exo2.cpp
+ * \author Jia Fournier 2278978 et Robert Nelea 2449901
+ * \date   18 septembre 2025
+ */
 
 #include <iostream>
 using namespace std;
 
 
 int main() {
-	int prix;
-	int montant;
+	int prix = 0;
 	cout << "Entrer prix : ";
 	cin >> prix;
-	cout << "Entrer montant : "; 
+
+	int montant = 0;
+	cout << "Entrer montant : ";
 	cin >> montant;
 
 	int monnaie = montant - prix;
@@ -30,7 +35,7 @@ int main() {
 
 	int piece1 = monnaie;
 
-	cout << "Montant OK : " << boolalpha << (montantSuffisant) << endl
+	cout << "Montant OK : " << boolalpha << montantSuffisant << endl
 		<< "Monnaie rendue : " << endl
 		<< " - Billet(s) 100$..." << billet100 << endl
 		<< " - Billet(s) 20$...." << billet20 << endl
@@ -38,5 +43,6 @@ int main() {
 		<< " - Billet(s) 5$....." << billet5 << endl
 		<< " - Piece(s) 1$......" << piece1 << endl;
 
+	return 0;
 }
 

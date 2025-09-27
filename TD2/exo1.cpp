@@ -1,3 +1,10 @@
+/**
+ * Programme qui vérifie si deux vecteurs sont orthogonaux.
+ * \file   exo1.cpp
+ * \author  Jia Fournier 2278978 et Robert Nelea 2449901
+ * \date   18 septembre 2025
+ */
+
 #include <iostream>
 using namespace std;
 
@@ -18,15 +25,16 @@ int main() {
 	double y2 = 0.0;
 	cin >> y2;
 
-	int resultat = (x1 * x2) + (y1 * y2);
+	int produitScalaire = (x1 * x2) + (y1 * y2);
 	
-	if (resultat == 0) {
+	if (produitScalaire == 0) {
 		cout << "Les vecteurs sont orthogonaux" << endl;
-		cout << resultat;
+		cout << produitScalaire;
 	}
 	else {
 		cout << "Les vecteurs ne sont pas orthogonaux" << endl;
-		cout << resultat;
+		cout << produitScalaire;
 	}
 
+	return 0;
 };
