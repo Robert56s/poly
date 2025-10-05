@@ -3,6 +3,7 @@ git add .
 git commit -m "message"
 git push origin main
 
+cd - change directory
 
 pour recuperer les modification:
 git pull origin main

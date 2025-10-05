@@ -1,0 +1,8 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: Le répertoire intermédiaire (x64\Debug\) contient des fichiers partagés provenant d'un autre projet (exo2_good.vcxproj). Cela peut entraîner un comportement de nettoyage et de regénération incorrect.
+  exo2_good.cpp
+C:\Users\jiafournier\OneDrive\Desktop\poly\vs\Jia\TD3\exo2_good\exo2_good.cpp(181,5): error C2084: la fonction 'int main(void)' a déjà un corps
+      C:\Users\jiafournier\OneDrive\Desktop\poly\vs\Jia\TD3\exo2_good\exo2_good.cpp(38,5):
+      voir la définition précédente de « main »
+  
+C:\Users\jiafournier\OneDrive\Desktop\poly\vs\Jia\TD3\exo2_good\exo2_good.cpp(221,4): warning C4138: '*/' trouvé à l'extérieur du commentaire
+C:\Users\jiafournier\OneDrive\Desktop\poly\vs\Jia\TD3\exo2_good\exo2_good.cpp(221,5): error C2059: erreur de syntaxe : '/'
