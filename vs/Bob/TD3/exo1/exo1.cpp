@@ -40,8 +40,9 @@ int main() {
 
 	if (isPrime(number)) {
 		cout << "Ce nombre est premier.";
+		return 0;
 	}
 	cout << "Ce nombre n'est pas premier car il est divisible par " << getSmallestIntDivisor(number) << ".";
 
-
+	return 0;
 }
