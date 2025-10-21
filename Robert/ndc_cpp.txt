@@ -9,6 +9,9 @@ int main() {
   return 0;
 }
 
+Variable :
+lowerCamelCase
+TAUX_CONSTANT
 
 Types de variable simple : 
 int myNum = 5;               // Integer (whole number without decimals)
@@ -23,6 +26,31 @@ Types pointeur : (variable qui contient l'adresse memoire d'une donnée)
 int entier;
 int* ptrEntier = &entier;  // & veut dire addresse de la chose et declaration d'un pointeur
 *ptrEntier;  // dereference du pointeur
+
+ex: 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  string food = "Pizza";  // A string variable
+  string* ptr = &food;  // A pointer variable that stores the address of food
+
+  // Output the value of food
+  cout << food << "\n";
+
+  // Output the memory address of food
+  cout << &food << "\n";
+
+  // Output the memory address of food with the pointer
+  cout << ptr << "\n";
+  
+  // Dereference: Output the value of food with the pointer (Pizza)
+  cout << *ptr << endl;
+  return 0;
+}
+Resultat -->>> Pizza, 0x7ffe9fc77d20, 0x7ffe9fc77d20, Pizza
+
 
 int x = 3;
 adresse -> donnee

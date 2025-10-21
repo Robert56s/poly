@@ -41,7 +41,7 @@ int main() {
 		prixTotal += prixArticle;
 	}
 
-	const double TAUX_TAXE = 0.15;
+	const double TauxTax = 0.15;
 	double taxe = TAUX_TAXE * prixTotal;
 	double prixTaxe = prixTotal + taxe;
 
