@@ -79,13 +79,13 @@ cout << (++x) << "\n"; // 11
 cout << (--x) << "\n"; // 9
 
 (++x evaluer avant de calculer resultat, x++ evaluer apres)
-ex: 
+ex1: 
 int x = 3;
 int y = 7;
 int z = -5;
 int resultat = ++x + y + z++;
 cout << resultat; // affiche 6
-cout << z; // affiche -4 mais le calcul de resulstat à été fait avec -5
+cout << z; // affiche -4 mais le calcul de resultat à été fait avec -5
 
 ex2:
 int  i = 0;
