@@ -1,0 +1,158 @@
+// ndc c++ chap 4
+
+Tableau (array):
+
+TypeDesElements nomVariable[dim1][dim2][dim3];
+
+int list1[3] = {} // remplie de trois 0
+for (int i = 0; i < 3; i++) cout << list1[i] << " "; // Resultat 0 0 0
+
+Acces aux elements avec l'indice seulement.
+
+int class[6][75] // index entre 0 et 5 puis 0 et 74
+	// LIGNE COLONNE (colonne : case qui se suivent en memoire)
+
+int matrice[6][7];
+0 1 0 1 0 1 0
+0 1 0 1 1 1 1
+1 1 1 1 0 0 0
+0 0 0 0 0 0 1
+1 1 1 1 1 0 0
+0 0 0 1 1 1 1
+
+matrice[1][6] == 1
+matrice[2][2] == 1
+matrice[5][0] == 0
+matrice[0][8] == 1 // affiche 1 position[1][1] mauvais exemple de code
+C'est mieux de faire ca plus claire :
+int* matrice_serialisee = &matrice[0][0];
+cout << matrice_serialisee[8]; // affiche 1
+
+On ne peut pas faire :
+cout << matrice; // affiche l'adresse
+cin >> matrice; // erreur
+int matrice2[6][7];
+matrice2 = matrice; // erreur
+
+Initialiser autre que 0 :
+double vecteurA[10], vecteurB[10];
+// Initialisation du vecteur -
+for (int i = 0; i < 10; i++) vecteurA[1] = 1.0;
+// Affectation d'un tableau a un autre
+for (int i = 0; i < 10; i++) vecteurB[i] = vecteurA[i];
+
+// - Comparaison de deux tableaux -
+bool estPareil = true;
+for (int i = 0; i < 10 && estPareil; i++)
+	if (vecteurA[i] != vecteurB[i])
+        estPareil = false;
+
+// - Calculer la norme d’un vecteur -
+double norme = 0.0;
+for (int i = 0; i < 10; i++)
+    norme += pow(vecteurA[i], 2);
+norme = sqrt(norme);
+
+const int DIMENSION1 = 5, DIMENSION2 = 5;
+int matrice[DIMENSION1][DIMENSION2];
+// Initialisation de la matrice avec valeurs aléatoires.
+// Pour passer chaque case, 2 boucles imbriquées :
+for (int i = 0; i < DIMENSION1; i++) { // ligne
+    for (int j = 0; j < DIMENSION2; j++) // colonne
+        matrice[i][j] = rand();
+}
+
+// Afficher le contenu du tableau 2D.
+for (int i = 0; i < DIMENSION1; i++) {
+    for (int j = 0; j < DIMENSION2; j++)
+        cout << matrice[i][j] << "\t";
+    cout << endl;
+}
+
+// Trouver la position i, j de la valeur maximum.
+int maximum = matrice[0][0];
+int positionIMax = 0, positionJMax = 0;
+
+for (int i = 0; i < DIMENSION1; i++) {
+    for (int j = 0; j < DIMENSION2; j++) {
+        if (matrice[i][j] > maximum) {
+            // Conserver la valeur et les indices i, j du maximum
+            maximum = matrice[i][j];
+            positionIMax = i;
+            positionJMax = j;
+        }
+    }
+}
+
+cout << "maximum = " << maximum << endl;
+cout << "indiceMax Ligne = " << positionIMax << endl;
+cout << "indiceMax Colonne = " << positionJMax << endl;
+
+
+
+Les enregistrement / structures (comme les objet js):
+
+struct NomDuType {
+	declaration des champs;
+};
+
+#include <iostream>
+#include <string>
+using namespace std;
+struct Adresse {  // Définition d’un type Adresse étant un enregistrement
+    int numero;
+    string rue, ville, codePostal;
+};
+struct Membre {  // Définition d’un type Membre étant un enregistrement
+    string nom, prenom;
+    int age;				// remarque qu'il n'y a pas de virgule comnme dans js
+    char sexe;				// il y a ;
+    Adresse adresse;
+    string telephone;
+    double montantDu;
+};
+int main()
+{
+    // Définition de variables de type Membre
+    Membre etudiant, clubSocial[50];
+	
+	etudiant.nom = "personne"
+	cout << etudiant.adresse; // marche pas
+	cout << etudiant.adresse.numero; // marche
+	
+	Membre moi = {"Robert", "Nelea", 19, 'M', {1234, "Ma rue", "Ma ville",
+		"H3X 2W9" }, "555-1234", 10000.0 };
+	
+	struct Point {
+		double x, y;
+	};
+	
+	Point point = { 12.3, -1.34};
+	
+	point.x = -2.5; point.y = -6.78;
+	
+	Point rien = point; // on peut seulement faire des affectation sur
+						// struct de meme 
+	cout << point; // erreur
+	cin >> point;  // erreur
+	Point autre = point + rien; // erreur
+	
+    return 0;
+}
+Generalement en met struct en dehor du main
+
+Traitement des elements d'un struct:
+Point pointA, pointB, vecteur[10];
+pointA.x = 12.3;
+pointA.y = -5.11;
+pointB = pointA;
+
+bool pareil = false;
+if (pointA.x == pointB.x && pointA.y == pointB.y)
+	pareil = true;
+
+double minX = vecteur[0].x;
+for (int i = 1; i < 10; i++)
+	if (vecteur[i].x < minX)
+		minX = vecteur[i].x;
+		
