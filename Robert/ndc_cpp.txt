@@ -22,6 +22,35 @@ bool myBoolean = true;       // Boolean (true or false)
 const double PI = 3.14;      // constent (majuscule)
 
 
+Convertion de type :
+// On aimerait :
+// 1 / 2 = 0.5 , 'A' + 2 = 'C' , -1 * 2U = -2 .
+
+// Une des syntaxes C++ :
+// Bonne manière :
+cout << double(1) / 2 << endl; // 0.5 (division de double)
+cout << char('A' + 2) << endl; // C   (résultat converti en char)
+cout << -1 * int(2U) << endl;  // -2  (multiplication de int)
+
+// Mauvaise manière :
+cout << double(1 / 2) << endl; // 0   (division de int)
+cout << 'A' + char(2) << endl; // 67  (résultat est un int)
+cout << int(-1 * 2U) << endl;  // -2  (bon résultat dans notre cas mais est
+                               // "implementation-defined" selon C++11 §4.7]3)
+
+// Mêmes conversions mais avec la syntaxe C :
+cout << (double)1 / 2 << endl; // 0.5
+cout << (char)('A' + 2) << endl; // C
+cout << -1 * (int)2U << endl; // -2
+
+// Mauvaise manière :
+cout << (double)(1 / 2) << endl; // 0
+cout << 'A' + (char)2 << endl;   // 67
+cout << (int)(-1 * 2U) << endl;  // -2
+
+
+
+
 Types pointeur : (variable qui contient l'adresse memoire d'une donnée)
 int entier;
 int* ptrEntier = &entier;  // & veut dire addresse de la chose et declaration d'un pointeur
@@ -140,3 +169,311 @@ Priorité Opérateur Associativité :
 14 , gauche à droite
 ex : faut cout << (x == 4) et non cout << x == 4  (voir prioriter)
 ex: ordre pas tjr determiner x = !(cout << "a") + !(cout << "b") + !(cout << "c")
+
+
+Chapitre 3 :
+Fonction d'entrée/sortie (stream) :
+
+cout << 0;
+cin >> x;
+
+tampon d'entrée = portion de l'espace mémoire
+
+Pour >>
+separateurs délimitant les valeurs à lire sont: l'espace, tab, fin de ligne, fin de fichier
+Lecture se fait jusque aux premier separateur de la valeur a lire ou le premier
+caractère invalide pour le type de valeur
+
+#include <istream>
+cin.get(x) // ignore les separateurs
+
+getline(inputStream, chaine, char fin='\n') // lit jusqu'au caractere fin (fin de ligne) ou EOF
+ex : getline(cin, chaine1);
+(les chaine des caractere finit toujour avec le caractere null, pour compatibiliter avec C)
+
+ingore(int n = 1, int fin = EOF)
+Saute une suite de caractere jusqu'a n sauter ou jusqu'a la marcque de fin est rencontrer (EOF)
+Utiliter : saute ENTER dans le tampon afin de lire correctemenrt avec getline() par la suite.
+
+ex: ~ endl // !!! seulement endl car getline s'arrete au endl
+
+cin >> numero; // 3537
+3537Gilforad~
+	^
+getline(cin, rue); // null
+3537~Gilforad~
+	 ^
+
+cin >> numero; // 3537
+3537~Gilforad~
+	^
+cin.ignore(1)
+3537~Gilforad~
+	 ^
+getline(cin, rue); // Gilford
+3537~Gilforad~
+			  ^
+
+
+──────────────────────────────────────────────────────────────
+                 LECTURE                         ÉCRITURE
+──────────────────────────────────────────────────────────────
+Déclaration      ifstream ficLire;               ofstream ficEcrire;
+
+Déclaration +    ifstream ficLire("Nom");        ofstream ficEcrire("Nom");      
+ouverture        ifstream ficLire("Nom", mode);  ofstream ficEcrire("Nom", mode);
+
+Ouverture        ficLire.open("Nom");            ficEcrire.open("Nom");
+                 ficLire.open("Nom", mode);      ficEcrire.open("Nom", mode);
+
+Vérification     if (ficLire.fail())             if (ficEcrire.fail())
+
+Lecture          ficLire >> variable;            Impossible
+                 getline(ficLire, mot); etc.
+
+Écriture         Impossible                      ficEcrire << variable;
+                                                ficEcrire.put(car); etc.
+
+Fin de fichier   if (ficLire.eof())              if (ficEcrire.eof())
+
+Fermeture        ficLire.close();                ficEcrire.close();
+──────────────────────────────────────────────────────────────
+
+peut pas faire declaration + ouverture et apres ouverture (comme 2 fois)
+
+
+
+cin.clear(); // clear l'etat d'ereur mais pas cin !
+
+cin.exceptions(ios::failbit); // on ne veut pas traiter les erruers masi s'assurer que le 
+                              // programme 'sarrete lors d'une erreur, ajoputer au debut
+							  // du main
+
+S'il y a une erreur a un premeir cin, le deuxiemme qui suit va skipper, 
+on utilise cin.clear(); et cin.ignore(numeric_limits<streamsize>::max(), '\n'); pour fix
+#include <limits>
+Sinon ca reesaye de lire la meme affaire dans cin
+
+
+eof() et fail() lors de lectures
+
+eof() (« end of file ») devient vrai si une opération tente de lire après le dernier caractère d’un fichier.
+– Le caractère suivant un mot/nombre doit être lu pour détecter la fin du mot/nombre.
+• Aucun caractère après un mot/nombre valide → eof() vrai et fail() faux.
+
+fail() devient vrai si la lecture échoue.
+– Mauvais caractère pour une valeur (ex. lettre au lieu d’un nombre)
+• Alors fail() vrai et eof() faux.
+– Aucune valeur à lire (fin de fichier atteinte sans valeur)
+• Alors fail() et eof() sont vrais.
+
+Toute lecture échoue si une de ces conditions est déjà vraie.
+– Utiliser entree.clear() pour pouvoir lire à nouveau.
+
+voir papier
+
+
+
+#include <iomanip>
+
+setw(nb_col)
+
+setprecision(nb_dec)
+fixed
+scientific
+boolalpha
+
+right
+left
+
+
+
+#include <cmath>
+
+cout << sqrt(64);
+cout << round(2.6);
+cout << log(2);
+cout << max(5, 10); // 10
+cout << min(5, 10); // 5
+
+
+int day = 4;
+switch (day) {
+  case 6:
+    cout << "Today is Saturday";
+    break;
+  case 7:
+    cout << "Today is Sunday";
+    break;
+  default:
+    cout << "Looking forward to the Weekend";
+}
+// Outputs "Looking forward to the Weekend"
+
+
+for(a; b; c)
+	d;
+<=>
+a;
+while (b) {
+	d;
+	c;
+}
+
+
+Lecture d'un fichier:
+
+// nombre
+int main()
+{
+	ifstream fichier("IV_lecture_fichier.txt");
+	fichier.exceptions(ios::failbit);  // Arrete s'il y a erreur.
+	
+	int somme = 0;
+	//Boucle tans qu'il reste autre chose que des espaces. 
+	while (!ws(fichier).eof()) {          // white space (tout caractere d'espacement)
+		int val1, val2, val3;			  // Tant qu'il reste autre cose que des caractere blanc
+		fichier >> val1 >> val2 >> val3;  // Lire les donnes
+		
+		somme += val1 + val2 +val3;       // Traitement
+	}
+	cout << "La somme est " << somme;
+	fichier.close();
+}
+
+// caractere 1 par 1 avec >>
+// Iletaitunpetitnavirequin'avaitjamaisnavigueOH!HE!OH!HE!14+17=31FINFIN
+int main()
+{
+    ifstream ficLu("IV_lecture.txt"); // L'ouverture du fichier
+    if (ficLu.fail())                 // est incorrecte
+        cout << " Probleme d'ouverture ";
+    else {                            // est correcte.
+        // Boucle de lecture du fichier, sautant les espaces.
+        while (!ws(ficLu).eof()) {
+            char carLu;
+            // Lecture d'un caractère avec l'opérateur >>.
+            ficLu >> carLu;
+            cout << carLu;
+        }
+        ficLu.close();
+    }
+}
+
+// caractere 1 par 1 avec get()
+Il etait un petit navire
+qui n'avait jamais navigue
+OH! HE! OH! HE!
+14 + 17 = 31
+FIN FIN
+int main()
+{
+    ifstream ficLu("IV_lecture.txt"); // L'ouverture du fichier
+    if (ficLu.fail())                 // est incorrecte
+        cout << " Probleme d'ouverture ";
+    else                              // est correcte.
+    {
+        // Boucle de lecture du fichier, incluant les espaces.
+        while (ficLu.peek() != EOF) {
+            char carLu;
+            // Lecture d'un caractère avec get.
+            ficLu.get(carLu);
+            cout << carLu;
+        }
+        ficLu.close();
+    }
+}
+
+// mot par mot
+Iletaitunpetitnavirequin'avaitjamaisnavigueOH!HE!OH!HE!14+17=31FINFIN
+int main()
+{
+    ifstream ficLu("IV_lecture.txt"); // L'ouverture du fichier
+    if (ficLu.fail())                 // est incorrecte
+        cout << " Probleme d'ouverture ";
+    else {                            // est correcte.
+        // Boucle de lecture du fichier, sautant les espaces.
+        while (!ws(ficLu).eof()) {
+            string motLu;
+            // Lecture d'une chaîne avec l'opérateur >>.
+            ficLu >> motLu;
+            cout << motLu;
+        }
+        ficLu.close();
+    }
+}
+
+// ligne par ligne
+Il etait un petit navire
+qui n'avait jamais navigue
+OH! HE! OH! HE!
+14 + 17 = 31
+FIN FIN
+int main()
+{
+    ifstream ficLu("IV_lecture.txt"); // L'ouverture du fichier
+    if (ficLu.fail())                 // est incorrecte
+        cout << " Probleme d'ouverture ";
+    else {                            // est correcte.
+        // Boucle de lecture du fichier, incluant les espaces.
+        while (ficLu.peek() != EOF) {
+            string ligneLue;
+            // Lecture d'une chaîne avec la fonction getline.
+            getline(ficLu, ligneLue);
+            cout << ligneLue << endl; //on fait ca parce que getline conserve pas endl
+        }							  // mais c'est possible qu'il n'y avait pas ca dans 
+        ficLu.close();				  // le fichier d'origine
+    }
+}
+
+
+
+Validation d'entrée :
+// prof
+int main()
+{
+    bool erreur = false;
+    do {
+        cout << "Entrer un entier: ";
+        int entier;
+        cin >> entier;
+        if (cin.fail()) {
+            erreur = true;
+            cout << "Erreur fatale, cin est inutilisable" << endl;
+            cin.clear();
+            cin.ignore(80, '\n');
+            cout << "cin est maintenant réinitialisé" << endl;
+        }
+        else {
+            erreur = false;
+            cout << entier << " lu correctement" << endl;
+        }
+    } while (erreur);
+}
+
+// moi a a
+static double readValueInRange(string question, double min, double max) {
+
+	double value = 0.0;
+	bool isValid = false;
+
+	while (!isValid) {
+		cout << question;
+		cin >> value;
+
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "La valeur doit etre reel, reesaye." << endl;
+			continue;
+		}
+		else if (value < min || value > max) {
+			cout << "La valeur doit etre dans l'intervale de " << min << " a " << max << ", reesaye." << endl;
+			continue;
+		}
+		
+		isValid = true;
+	}
+
+	return value;
+} 
