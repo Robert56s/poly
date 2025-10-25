@@ -156,3 +156,42 @@ for (int i = 1; i < 10; i++)
 	if (vecteur[i].x < minX)
 		minX = vecteur[i].x;
 		
+
+exemple : 
+
+const int MAX_ORDIS = 50;
+struct Ordinateur
+{
+    string format;
+    string compagnie;
+    double tailleEcranPouces;
+    double cpuGHz;
+    int memoireRamGiB;
+    int memoireDisqueGB;
+};
+struct ListeOrdi
+{
+    Ordinateur liste[MAX_ORDIS];
+    int nombreOrdi;
+};
+
+// lire fishier pour mettre dans un struc 
+ListeOrdi tousOrdi;
+ifstream fichier;
+fichier.open("IV_ordi.txt");
+if (!fichier.fail()) {
+    tousOrdi.nombreOrdi = 0;
+
+    while (!ws(fichier).eof()) {
+        fichier >> tousOrdi.liste[tousOrdi.nombreOrdi].format
+                >> tousOrdi.liste[tousOrdi.nombreOrdi].compagnie
+                >> tousOrdi.liste[tousOrdi.nombreOrdi].tailleEcranPouces
+                >> tousOrdi.liste[tousOrdi.nombreOrdi].cpuGHz
+                >> tousOrdi.liste[tousOrdi.nombreOrdi].memoireRamGiB
+                >> tousOrdi.liste[tousOrdi.nombreOrdi].memoireDisqueGB;
+        tousOrdi.nombreOrdi++;
+    }
+
+}
+else
+    cout << " fichier introuvable" << endl;
