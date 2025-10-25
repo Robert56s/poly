@@ -3,23 +3,20 @@
 using namespace std;
 
 int main() {
-	double epsilon = 0.0;
-	cout << "Entrez epsilon : ";
-    cin >> epsilon;
-    
-    double aproxPi = 0.0;
-    
-    bool state = true;
-    
-    for (int i = 1; i < 10; i++) {
-    	int upper = 0;
-        int lower = 0;
-    	for (int j = 1; j <= i; i++) {
-        	upper *= j;
-            lower *= (2*j + 1);
-        }
-        cout << (upper/(double)lower) << endl;
-    }
+	cout << "Entrer epsilon: ";
+	double epsilon;
+    cin >> epsilon;  
+	double terme, numerateur = 1.0, denominateur = 1.0;
+	int k = 0;
+	double somme = 0.0;
+	do {
+		terme = numerateur / denominateur;
+		somme += terme;
+		k++;
+		numerateur *= k;
+		denominateur *= 2*k + 1;
+	} while (terme >= epsilon);
+	cout << "pi/2 ~= " << somme << endl;
     
   	return 0;
 }
