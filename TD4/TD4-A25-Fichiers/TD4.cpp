@@ -135,34 +135,70 @@ GroupeImages lireFichier(const string& nomFichier);
 
 void autresTests()
 {
-	//TODO: 0 Tester les fonctions à mesure qu'elles sont écrites.
-	// Par exemple:
-	// Créer un pixel d'une certaine couleur.  Vérifier dans le débogueur que la lettre associée avec cette couleur est la bonne.
-	// Ajouter une couleur au pixel.  Vérifier dans le débogueur que ça donne bien la bonne somme pour les trois composantes de la couleur du pixel.
-	// Creer une petite image.  Affecter une valeur à un des pixels.  Afficher l'image pour voir qu'il y a bien un pixel avec la valeur voulue.
-	// Creer un groupe vide d'images.  Ajouter l'image précédente deux fois, en modifiant son nom entre les deux.  Vérifier qu'il indique bien qu'il y a une image après le premier ajout, qu'il y en a deux après le deuxième ajout, et que les images aux indices 0 et 1 sont bien l'image crée.
-	// Chercher dans le groupe d'images les deux noms d'images et un nom autre, et vérifier que les indices retournés sont bien 0, 1 et 'aucun' (constante qui vaut -1).
+
+}
+
+void afficherGroupeImagesBrut(const GroupeImages& groupeImages)
+{
+	// Affiche groupeImage brut
+	for (Image image : groupeImages.images) {
+		if (image.nomImage.empty()) {
+			continue;
+		}
+		cout << image.nomImage << ' ' << image.taille.largeur << ' ' << image.taille.hauteur << endl;
+		for (int i = 0; i < image.taille.hauteur; i++) {
+			for (int j = 0; j < image.taille.largeur; j++) {
+				cout << image.pixels[i][j].tauxRouge << image.pixels[i][j].tauxVert << image.pixels[i][j].tauxBleu << ' ';
+				//cout << retournerCouleurPixel({ image.pixels[i][j].tauxRouge, image.pixels[i][j].tauxVert, image.pixels[i][j].tauxBleu }) << ' ';
+			}
+			cout << endl;
+		}
+		cout << endl;
+	}
+}
+
+void afficherImagesBrut(const Image& image)
+{
+	cout << image.nomImage << ' ' << image.taille.largeur << ' ' << image.taille.hauteur << endl;
+	for (int i = 0; i < image.taille.hauteur; i++) {
+		for (int j = 0; j < image.taille.largeur; j++) {
+			cout << image.pixels[i][j].tauxRouge << ':' << image.pixels[i][j].tauxVert << ':' << image.pixels[i][j].tauxBleu << ' ';
+			//cout << retournerCouleurPixel({ image.pixels[i][j].tauxRouge, image.pixels[i][j].tauxVert, image.pixels[i][j].tauxBleu }) << ' ';
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
 int main()
 {
-	autresTests();
+	// 1 Recuperer (lire) le group d'images à partir du fichier fourni, vérifier qu'il y a le bon nombre d'images, et que la première image a la bonne taille.
+	GroupeImages groupeImages = lireFichier(nomFichierImages);
 
-	//TODO: 1 Recuperer (lire) le group d'images à partir du fichier fourni, vérifier qu'il y a le bon nombre d'images, et que la première image a la bonne taille.
+	// 2 Modifier le type de ce groupe d'images par "Images de tests".
+	modifierType(groupeImages, "Images de tests");
 
-	//TODO: 2 Modifier le type de ce groupe d'images par "Images de tests".
+	// 3 Chercher, dans ce groupe, les images ayant les nom "Image_Verte", "Image_Rouge", et "Blabla".
+	Image imageVerte = groupeImages.images[chercherImageParNom(groupeImages, "Image_Verte")];
+	Image imageRouge = groupeImages.images[chercherImageParNom(groupeImages, "Image_Rouge")];
+	Image imageBlabla = groupeImages.images[chercherImageParNom(groupeImages, "Blabla")];
 
-	//TODO: 3 Chercher, dans ce groupe, les images ayant les nom "Image_Verte", "Image_Rouge", et "Blabla".
+	// 4 Doubler la taille de Image_Verte en hauteur, en ajoutant des pixels bleus.
+	doublerTaille(imageVerte, dimensionHauteur, creerPixel(minConcentrationCouleurPrimare, minConcentrationCouleurPrimare, maxConcentrationCouleurPrimare));
 
-	//TODO: 4 Doubler la taille de Image_Verte en hauteur, en ajoutant des pixels bleus.
+	// 5 Doublee la taille des Image_Rouge en largeur, en ajoutant des pixels rouges.
+	doublerTaille(imageRouge, dimensionLargeur, creerPixel(maxConcentrationCouleurPrimare, minConcentrationCouleurPrimare, minConcentrationCouleurPrimare));
 
-	//TODO: 5 Doublee la taille des Image_Rouge en largeur, en ajoutant des pixels rouges.
+	// 6 Modifier la couleur du pixel (1,1) de l'Image_Rouge en augmentant la concetration du bleu de 50 unités et en diminuant la concentration du rouge de 255 unités.
+	ajouterCouleurPixel(imageRouge.pixels[0][0], creerPixel(-255, 0, 50));
 
-	//TODO: 6 Modifier la couleur du pixel (1,1) de l'Image_Rouge en augmentant la concetration du bleu de 50 unités et en diminuant la concentration du rouge de 255 unités.
-	
-	//TODO: 7 Modifier la couleur du pixel (2,1) de l'Image_Verte en augementant la concetration du bleu de 100 unités.
+	// 7 Modifier la couleur du pixel (2,1) de l'Image_Verte en augementant la concetration du bleu de 100 unités.
+	ajouterCouleurPixel(imageVerte.pixels[1][0], creerPixel(0, 0, 100));
 
-	//TODO: 8 Afficher le groupe d'images.
+	// 8 Afficher le groupe d'images.
+	groupeImages.images[chercherImageParNom(groupeImages, "Image_Verte")] = imageVerte;
+	groupeImages.images[chercherImageParNom(groupeImages, "Image_Rouge")] = imageRouge;
+	afficherGroupeImages(groupeImages);
 }
 
 #pragma region "Définitions" //{
@@ -173,27 +209,47 @@ int main()
 
 Pixel creerPixel(int tauxRouge, int tauxVert, int tauxBleu)
 {
-	//TODO: Créer un pixel à partir des informations en paramètres et le retourner.
-	JUSTE_POUR_QUE_CA_COMPILE
+	// Créer un pixel à partir des informations en paramètres et le retourner.
+	return { tauxRouge, tauxVert, tauxBleu };
 }
 
 
 void ajouterConcentrationCouleurPrimaire(int& concentrationAModifier, int increment)
 {
-	//TODO: Augmenter ou diminuer ( suivant le signe de increment ) la concentration de la couleur primaire passée en paramètre. La concentration finale doit être entre minConcentrationCouleurPrimare et maxConcentrationCouleurPrimare .
+	// Augmenter ou diminuer ( suivant le signe de increment ) la concentration de la couleur primaire passée en paramètre. La concentration finale doit être entre minConcentrationCouleurPrimare et maxConcentrationCouleurPrimare .
+	concentrationAModifier += increment;
+
+	if (concentrationAModifier > maxConcentrationCouleurPrimare) {
+		concentrationAModifier = maxConcentrationCouleurPrimare;
+	}
+	else if (concentrationAModifier < minConcentrationCouleurPrimare) {
+		concentrationAModifier = minConcentrationCouleurPrimare;
+	}
 }
 
 
 void ajouterCouleurPixel(Pixel& pixelAModifier, const Pixel& increment)
 {
-	//TODO: Ajoute, composante par composante, l'increment au pixelAModifier, en s'assurant que chaque concentration résultante est dans les bornes.
+	// Ajoute, composante par composante, l'increment au pixelAModifier, en s'assurant que chaque concentration résultante est dans les bornes.
+	ajouterConcentrationCouleurPrimaire(pixelAModifier.tauxRouge, increment.tauxRouge);
+	ajouterConcentrationCouleurPrimaire(pixelAModifier.tauxVert, increment.tauxVert);
+	ajouterConcentrationCouleurPrimaire(pixelAModifier.tauxBleu, increment.tauxBleu);
 }
 
 
 char retournerCouleurPixel(const Pixel& pixel)
 {
-	//TODO: Retourner  'R' (respectivement 'V' et 'B') pour un pixel contenant uniquement du rouge (respectivement uniquement du vert et uniquement du bleu); ' ' pour un pixel contenant aucun rouge, ni vert, ni bleu; 'Q' pour tout autre couleur de pixel.
-	JUSTE_POUR_QUE_CA_COMPILE
+	// Retourner  'R' (respectivement 'V' et 'B') pour un pixel contenant uniquement du rouge (respectivement uniquement du vert et uniquement du bleu); ' ' pour un pixel contenant aucun rouge, ni vert, ni bleu; 'Q' pour tout autre couleur de pixel.
+	if ((pixel.tauxRouge > 0) && (pixel.tauxVert == 0) && (pixel.tauxBleu == 0))
+		return 'R';
+	else if ((pixel.tauxRouge == 0) && (pixel.tauxVert > 0) && (pixel.tauxBleu == 0))
+		return 'V';
+	else if ((pixel.tauxRouge == 0) && (pixel.tauxVert == 0) && (pixel.tauxBleu > 0))
+		return 'B';
+	else if ((pixel.tauxRouge == 0) && (pixel.tauxVert == 0) && (pixel.tauxBleu == 0))
+		return ' ';
+	else
+		return 'Q';
 }
 
 #pragma endregion //}
@@ -203,27 +259,75 @@ char retournerCouleurPixel(const Pixel& pixel)
 
 Image creerImage(const string& nomImage, unsigned tailleEnLargeur, unsigned tailleEnHauteur)
 {
-	//TODO: Creer une image à partir des informations en paramètres et la retourner.
-	JUSTE_POUR_QUE_CA_COMPILE
+	Image image;
+
+	image.nomImage = nomImage;
+	image.taille.largeur = tailleEnLargeur;
+	image.taille.hauteur = tailleEnHauteur;
+	
+	return image;
 }
 
 
 void doublerTaille(Image& image, int doitDoublerQuelleDimension, const Pixel& couleur)
 {
-	//TODO: Doubler la taille de l'image suivant doitDoublerQuelleDimension en paramètre (voir les définitions de constantes pour les valeurs possibles de ce paramètre) en respectant la taille maximale de l'image et en ajoutant des pixels de la couleur spécifiée en paramètre.
+	// Doubler la taille de l'image suivant doitDoublerQuelleDimension en paramètre (voir les définitions de constantes pour les valeurs possibles de ce paramètre) en respectant la taille maximale de l'image et en ajoutant des pixels de la couleur spécifiée en paramètre.
+
+	if (image.taille.largeur * 2 > tailleMaxImage || image.taille.hauteur * 2 > tailleMaxImage) {
+		return;
+	}
+
+	if (doitDoublerQuelleDimension == 1) {
+		for (int i = 0; i < image.taille.hauteur; i++) {
+			for (int j = (image.taille.largeur); j < (image.taille.largeur * 2); j++) {
+				affecterPixel(image, j, i, couleur);
+			}
+		}
+		image.taille.largeur *= 2;
+	}
+	else if (doitDoublerQuelleDimension == 2) {
+		for (int i = (image.taille.hauteur); i < (image.taille.hauteur * 2); i++) {
+			for (int j = 0; j < image.taille.largeur; j++) {
+				affecterPixel(image, j, i, couleur);
+			}
+		}
+		image.taille.hauteur *= 2;
+	}
 }
 
 
 void affecterPixel(Image& image, unsigned positionEnLargeur, unsigned positionEnHauteur, const Pixel& pixel)
 {
-	//TODO: Remplacer le pixel de l'image à la position indiquée par positionEnLargeur et positionEnHauteur par la valeur du pixel passé en paramètre.
+	// Remplacer le pixel de l'image à la position indiquée par positionEnLargeur et positionEnHauteur par la valeur du pixel passé en paramètre.
+	image.pixels[positionEnHauteur][positionEnLargeur] = pixel;
 }
 
 
 void afficherImage(const Image& image)
 {
-	//TODO: Afficher l'image au complet, avec entête pour son nom, chaque pixel étant représenté par un caractère; le caractère à utiliser est indiqué dans la fonction retournerCouleurPixel.  Vous trouverez un exemple d'affichage dans l'enoncé.
-	//TODO: Cette fonction ne doit avoir aucun ancien "for".
+	// Afficher l'image au complet, avec entête pour son nom, chaque pixel étant représenté par un caractère; le caractère à utiliser est indiqué dans la fonction retournerCouleurPixel.  Vous trouverez un exemple d'affichage dans l'enoncé.
+	// Cette fonction ne doit avoir aucun ancien "for".
+
+	for (int i : range(tailleEntete)) {
+		cout << caractereEnteteImage;
+	}
+	cout << endl << "Nom de l'image: " << image.nomImage << endl;
+	for (int i : range(tailleEntete)) {
+		cout << caractereEnteteImage;
+	}
+	cout << endl;
+
+	for (auto& row : span(image.pixels, image.taille.hauteur)) {
+		cout << setw(4) << right;
+		for (Pixel pixel : span(row, image.taille.largeur)) {
+			cout << retournerCouleurPixel(creerPixel(pixel.tauxRouge, pixel.tauxVert, pixel.tauxBleu));
+		}
+		cout << endl;
+	}
+	for (int i : range(tailleEntete)) {
+		cout << caractereEnteteImage;
+	}
+	cout << endl;
 }
 
 #pragma endregion //}
@@ -233,34 +337,91 @@ void afficherImage(const Image& image)
 
 void ajouterImage(GroupeImages& groupeImages, const Image& image)
 {
-	//TODO: Si il y a encore de l'espace dans groupeImages, ajouter l'image en paramètre.
+	// Si il y a encore de l'espace dans groupeImages, ajouter l'image en paramètre.
+	for (Image& i : groupeImages.images) { // & pour modifier la valeur dans groupeImages
+		if (i.nomImage.empty()) {
+			i = image;
+			return;   
+		}
+	}
 }
 
 
 void modifierType(GroupeImages& groupeImages, const string& type)
 {
-	//TODO: Modifier le type du groupeImages par le type en paramètre.
+	// Modifier le type du groupeImages par le type en paramètre.
+	groupeImages.type = type;
 }
 
 
 int chercherImageParNom(const GroupeImages& groupeImages, const string& nomImage)
 {
-	//TODO: Retourner l'indice de l'image du groupeImages dont le nom est celui donné par le paramètre nomImage.  Retourner la constante 'aucun' si ce nom n'est pas trouvé.
-	JUSTE_POUR_QUE_CA_COMPILE
+	// Retourner l'indice de l'image du groupeImages dont le nom est celui donné par le paramètre nomImage.  Retourner la constante 'aucun' si ce nom n'est pas trouvé.
+	int indexImage = 0;
+
+	for (Image image : groupeImages.images) {
+		if (image.nomImage == nomImage) {
+			return indexImage;
+		}
+		indexImage++;
+	}
+	return aucun;
 }
 
 
 void afficherGroupeImages(const GroupeImages& groupeImages)
 {
-	//TODO: Afficher le groupe d'images, soit l'entête pour le type d'images et toutes les images du groupe. (Vous trouverez dans l'énoncé un exemple)
-	//TODO: Cette fonction ne doit avoir aucun ancien "for".
+	// Afficher le groupe d'images, soit l'entête pour le type d'images et toutes les images du groupe. (Vous trouverez dans l'énoncé un exemple)
+	// Cette fonction ne doit avoir aucun ancien "for".
+
+	for (int i : range(tailleEntete)) {
+		cout << caractereEnteteGroupe;
+	}
+	cout << endl << "Type du groupe d'images: " << groupeImages.type << endl;
+	for (int i : range(tailleEntete)) {
+		cout << caractereEnteteGroupe;
+	}
+	cout << endl;
+	
+	for (const Image& image : span(groupeImages.images, groupeImages.nImages)) {
+		afficherImage(image);
+	}
 }
 
 
 GroupeImages lireFichier(const string& nomFichier)
 {
-	//TODO: Récuperer (lire), à partir du fichier dont le nom est donné en paramètre, l'ensemble des images stockés, puis retourner un groupe d'images contenant ces images. Le type de ce groupe d'images n'est pas spécifié.
-	JUSTE_POUR_QUE_CA_COMPILE
+	// Récuperer (lire), à partir du fichier dont le nom est donné en paramètre, l'ensemble des images stockés, puis retourner un groupe d'images contenant ces images. Le type de ce groupe d'images n'est pas spécifié.
+	
+	GroupeImages groupeImages = {};
+
+	ifstream imagesTxt(nomFichier);
+
+	unsigned indexImage = 0U;
+	while (!ws(imagesTxt).eof()) {
+		string nomImage;
+		unsigned largeurImage, hauteurImage;
+
+		imagesTxt >> nomImage
+			>> largeurImage
+			>> hauteurImage;
+
+		Image image = creerImage(nomImage, largeurImage, hauteurImage);
+
+		for (int i = 0; i < hauteurImage; i++) {
+			for (int j = 0; j < largeurImage; j++) {
+				
+				int pixelRouge, pixelVert, pixelBleu;
+				imagesTxt >> pixelRouge >> pixelVert >> pixelBleu;
+				affecterPixel(image, j, i, creerPixel(pixelRouge, pixelVert, pixelBleu));
+			}
+		}
+		ajouterImage(groupeImages, image);
+		indexImage++;
+	}
+	groupeImages.nImages = indexImage;
+	
+	return groupeImages;
 }
 
 #pragma endregion //}

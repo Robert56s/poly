@@ -1,0 +1,200 @@
+// ndc chap 5
+
+
+// Transmition par valeur
+void permuter(int a; int b;) {
+	int tampon = a;
+	a = b;
+	b = tampon;
+}
+int main() {
+	int i = 5;
+	int j = 3;
+	cout << "I= " << i << " J= " << j << endl; // Affiche I= 5 J= 3
+	permuter(i, j);
+	cout << "I= " << i << " J= " << j << endl; // Affiche I= 5 J= 3 tjr
+}
+
+//Transmition par adresse
+void permuter(int& a; int& b;) {
+	int tampon = a;
+	a = b;
+	b = tampon;
+}
+int main() {
+	int i = 5;
+	int j = 3;
+	cout << "I= " << i << " J= " << j << endl; // Affiche I= 5 J= 3
+	permuter(i, j);
+	cout << "I= " << i << " J= " << j << endl; // Affiche I= 3 J= 5
+}
+
+// autre exemple :
+#include <iostream>
+#include <iomanip>
+using namespace std;
+void modifier(int entier1, int& entier2) {
+    entier1 = entier1 + 100;
+    entier2 = entier2 + 100;
+    cout << "(2) Les valeurs sont ";
+    cout << setw(4) << entier1 << setw(4) << entier2 << endl; // affiche 107 12
+}
+int main() {
+    int compteur = 7, indice = 12;
+
+    cout << "(1) Les valeurs sont ";
+    cout << setw(4) << compteur << setw(4) << indice << endl; // affiche 7 12
+
+    modifier(compteur, indice);
+
+    cout << "(3) Les valeurs sont ";
+    cout << setw(4) << compteur << setw(4) << indice << endl; // affiche 7 112
+}
+
+
+// Transmition de parametres
+int f1(int x) { 	// x est IN
+	return x*x;
+}
+void f2(int x, int& y) { 	// x est IN, y est OUT
+	y = x*x;
+}
+void f3(int& x) { 	// x est IN/OUT
+	y = x*x;
+}
+int main() {
+	int y = 3;
+	int x = 123; 	// aucun rapport avec les x d'en haut
+	
+	int a = f1(y);
+	cout << a;     	// affiche 9
+	
+	int b;          // c'est ok de passer une variable non initialiset
+	f2(y, b);	  	// car c'est OUT, si met dans f1 c'est undefined behaviour
+	cout << b;      // affiche 9
+	
+	string s;
+	getline(cin, s);  	// c'est une fonction IN et OUT
+	
+	f3(y);
+	cout << y;		// affiche 9
+}
+
+
+// Un tableau comme paramètre
+- Toujours transmis par adresse (sans &) puisque l’identificateur d’un tableau contient comme information l’adresse du premier élément du tableau.
+
+    void afficher_1D(int tableau[], int dim)
+		→ On peut aussi précisées les dimensions si on veut
+		
+    void afficher_2D(int tableau[][5], int dim)
+        → Ces dimensions doivent être précisées apres la premiere
+
+    void afficher_3D(int tableau[][10][10], int dim)
+
+    void somme(int result[10], const int a[10], const int b[10])
+        → Le tableau ne peut être modifié
+
+
+// Declaration de fonction ou prototype Ex :
+double totalCost(int nItmes, double itemPrice);
+
+
+// Variable golbales *Declare avant le main*
+// a eviter (guide de codage), mais on peut faire des const globales
+
+
+// const vs static const
+void f(int x) {
+	const int y = x + 1;   			// const est recreer a chaque fois que f est appeler
+	static const int z = x + 1;		// const creer une seul fois et conserver
+}
+int main() {
+	f(1); // y == 2 et z == 2
+	f(2); // y == 3 et z == 2
+}
+
+
+// Transmission des types composés
+
+• Généralement transmis par adresse pour
+  – Performance : le type peut être gros (string)
+  – Simplicité : copier la valeur peut être problématique (...stream)
+  – Ne nuit pas la lisibilité
+
+    void afficherOrdinateur(const Ordinateur& ordinateur) {  // Attention mettre const si IN
+        cout << ordinateur.compagnie << '\t'
+             << ordinateur.format << '\t'
+             << ordinateur.cpuGHz << '\t'
+             << ordinateur.memoireRamGiB << '\t'
+             << ordinateur.tailleEcranPouces << '\t'
+             << ordinateur.memoireDisqueGB << endl;
+    }
+
+• Attention de spécifier correctement le const si paramètre IN :
+  – Soit l’expression : afficher("bonjour");
+  – L’en-tête de fonction doit être : void afficher(const string& texte);
+
+• Les « stream » peuvent seulement être transmis par référence
+  – Jamais const (ou presque) : déplacer la tête de lecture est une modification
+
+      & pas const IN/OUT                      paramètre OUT
+      ↓                                 ↓
+void lireOrdinateur1(istream& fichier, Ordinateur& ordinateur) {
+    fichier >> ordinateur.format
+            >> ordinateur.compagnie
+            >> ordinateur.tailleEcranPouces
+            >> ordinateur.cpuGHz
+            >> ordinateur.memoireRamGiB
+            >> ordinateur.memoireDisqueGB;
+}
+
+• Le retour par valeur peut être optimisé par le compilateur  
+• Règle générale : écrire ce qui est le plus lisible  
+  – Si la performance est cruciale (jamais dans ce cours) vérifier si l’optimisation est faite  
+
+Probable copie de valeur, mais généralement plus lisible qu’un paramètre OUT  
+
+Ordinateur lireOrdinateur2(istream& fichier)
+{
+    Ordinateur ordinateur;
+    fichier >> ordinateur.format
+            >> ordinateur.compagnie
+            >> ordinateur.tailleEcranPouces
+            >> ordinateur.cpuGHz
+            >> ordinateur.memoireRamGiB
+            >> ordinateur.memoireDisqueGB;
+    return ordinateur;
+}
+
+
+// Transmission de tableaux en C++20
+(doit installer la bibliothèque; la norme sort seulement en 2020)
+
+int vals[] = { 1, 5, 3, 4 };
+int nVals = int(size(vals)); // PAS 'sizeof' (nombre d'octets).
+
+cout << sizeof(vals);      			// → 16 (si int = 4 octets)
+cout << sizeof(vals) / sizeof(int); // → 4 (nb d’éléments)
+cout << size(vals)					// → 4 (nb d’éléments) mais vals de type span<int>
+
+Type « span » : généralisation de la struct précédente sturct de valeurs[] et dimValeurs[]
+
+void afficher_v3(span<const int> tableau) {
+    for (int i = 0; i < tableau.size(); i++) // .size() comme pour string.
+        cout << tableau[i] << " ";           // Accès comme un tableau.
+}
+
+– Appels :
+afficher_v3(vals);                    // Conversion en span implicite.
+afficher_v3({vals, nVals});           // Peut construire span comme la struct.
+span s = vals;
+afficher_v3(s.subspan(1, 2));         // Prend une partie d’un span.
+// .subspan(index_début, nombre_éléments)
+afficher(s.data(), s.size());         // Pour utiliser l’ancienne fonction.
+
+Syntaxe dite template : le type des éléments entre < >
+
+Pas encore de taille variable multiples dimensions
+span<int[10]> tableau fonctionne pour l’équivalent de int tableau[][10]
+
