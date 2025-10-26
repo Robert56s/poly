@@ -1,17 +1,17 @@
 ﻿  TD4.cpp
 C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(149,21): warning C4018: '<': signed/unsigned mismatch
 C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(150,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(163,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(164,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(281,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(282,43): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(289,42): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(290,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(311,11): warning C4189: 'i': local variable is initialized but not referenced
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(315,11): warning C4189: 'i': local variable is initialized but not referenced
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(327,11): warning C4189: 'i': local variable is initialized but not referenced
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(377,11): warning C4189: 'i': local variable is initialized but not referenced
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(381,11): warning C4189: 'i': local variable is initialized but not referenced
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(411,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(412,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(162,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(163,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(280,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(281,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(288,42): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(289,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(310,11): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(314,11): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(326,11): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(376,11): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(380,11): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(410,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\TD4.cpp(411,22): warning C4018: '<': signed/unsigned mismatch
   TD4.vcxproj -> C:\Users\rober\Desktop\poly\TD4\TD4-A25-Fichiers\x64\Debug\TD4.exe

@@ -138,7 +138,7 @@ void autresTests()
 
 }
 
-void afficherGroupeImagesBrut(const GroupeImages& groupeImages)
+void testAfficherGroupeImagesBrut(const GroupeImages& groupeImages)
 {
 	// Affiche groupeImage brut
 	for (Image image : groupeImages.images) {
@@ -156,8 +156,7 @@ void afficherGroupeImagesBrut(const GroupeImages& groupeImages)
 		cout << endl;
 	}
 }
-
-void afficherImagesBrut(const Image& image)
+void testAfficherImagesBrut(const Image& image)
 {
 	cout << image.nomImage << ' ' << image.taille.largeur << ' ' << image.taille.hauteur << endl;
 	for (int i = 0; i < image.taille.hauteur; i++) {
